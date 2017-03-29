@@ -1,0 +1,23 @@
+{
+  "name": "stylus-svg",
+  "version": "0.0.0",
+  "description": "Stylus function to import svg from a path and include it inline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryuran/stylus-svg.git"
+  },
+  "keywords": [
+    "stylus",
+    "svg"
+  ],
+  "author": "Yvain Liechti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryuran/stylus-svg/issues"
+  },
+  "homepage": "https://github.com/ryuran/stylus-svg#readme"
+}
