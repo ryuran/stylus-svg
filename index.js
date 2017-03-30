@@ -5,8 +5,8 @@ function stylusSvg(stylus, svgDirs) {
     var path = require('path');
 
 
-    function svgImport(expression, css) {
-        var svg = expression.nodes[0];
+    function svgImport(pathExpression, stylusExpression) {
+        var svg = pathExpression.nodes[0];
         // assert that the node (svg) is a String node, passing
         // the param name for error reporting
         utils.assertType(svg, 'string', 'svg');
@@ -26,9 +26,14 @@ function stylusSvg(stylus, svgDirs) {
         // remove xml tag
         data = data.replace(/<\?xml .*\?>/, '');
 
-        // if (css !== undefined) {
-        //     css = '<style>' + stylus.render(css) + '</style>';
-        // }
+        if (stylusExpression !== undefined) {
+            var css = stylusExpression.nodes[0];
+            utils.assertType(css, 'string', 'css');
+            css = '<style>' + stylus(css.string).render() + '</style>';
+            data = data.replace(/(<svg(?:.*)>)/, "$1" + css);
+        }
+
+        // console.log(data);
 
         // Chunk up string in order to avoid
         // "stack level too deep" error
@@ -79,6 +84,8 @@ function stylusSvg(stylus, svgDirs) {
             encoded = encoded + chunk;
             index = index + slice;
         }
+
+        // console.log(encoded);
 
         var dataUri = 'data:image/svg+xml;utf8,' + encoded;
 
