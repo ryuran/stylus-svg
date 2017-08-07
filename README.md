@@ -9,14 +9,12 @@ This js module add to stylus a function to read a svg file and import it inline 
 ## Installation
 
 ```bash
-npm install ryuran/svg-stylus#0.1.0
+npm install ryuran/svg-stylus#v0.2.0
 ```
 
 > NB: It’s an install from github but this module will be register on NPM as soon as possible
 
 ## Initalize
-
-> NB: Replace `BASE_PATH_TO_SVG` by path to your svg directory
 
 ### Directly with stylus
 
@@ -47,31 +45,42 @@ var gulp = require('gulp'),
 
 // css
 gulp.task('styles', function () {
-    return gulp.src('*.styl')
-        .pipe(stylus({
-            use: [
-                stylusSvgImport()
-            ]
-        }))
-        .pipe(gulp.dest('css'));
+  return gulp.src('*.styl')
+    .pipe(stylus({
+      use: [
+        stylusSvgImport()
+      ]
+    }))
+    .pipe(gulp.dest('css'));
 });
 ```
 
+#### options
+
+You can add some bases directories to resolve path of your svg files.
+
+```javascript
+  stylusSvgImport({svgDirs: [__dirname]})
+```
+
+```stylus
+  use('./node_modules/stylus-svg/index.js', {svgDirs: ['/assets']})
+```
 ## How to use?
 
 ```stylus
 .foo
-    background-image: svgImport('../svg/logo.svg')
+  background-image: svgImport('../svg/logo.svg')
 ```
 
 You can also use the second argument to give some css to your svg (in stylus language)
 
 ```stylus
 .foo
-    background-image: svgImport('../svg/logo.svg', '
-        path
-            fill: rgba(255, 255, 255, .5)
-    ')
+  background-image: svgImport('../svg/logo.svg', '
+    path
+      fill: rgba(255, 255, 255, .5)
+  ')
 ```
 
 This Stylus code do not access to outside stylus context (do not use variable defined outside).
