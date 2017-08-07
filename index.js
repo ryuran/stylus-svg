@@ -1,20 +1,21 @@
 function stylusSvg(options) {
+    options = options || {};
     var fs = require('fs');
     var path = require('path');
-    var svgDirs = options.svgDirs || ['./'];
+    var stylus = require('stylus')
+    var nodes = stylus.nodes;
+    var utils = stylus.utils;
 
-    return function svgImport(style) {
-        var nodes = style.nodes;
-        var utils = style.utils;
+    return function(style) {
+        var svgDirs = options.svgDirs || [path.dirname(style.options.filename)];
 
         style.define('svgImport', function svgImport(pathExpression, stylusExpression) {
-            var svg = pathExpression.nodes[0];
+            svgDirs.push(path.dirname(pathExpression.filename));
+            var svg = pathExpression;
             // assert that the node (svg) is a String node, passing
             // the param name for error reporting
             utils.assertType(svg, 'string', 'svg');
             var svgPath = svg.string;
-
-            var file = utils.lookup(svgPath, svgDirs);
 
             // Grab bytes necessary to retrieve dimensions.
             // if this was real you would do this per format,
@@ -26,7 +27,7 @@ function stylusSvg(options) {
             }
 
             if (stylusExpression !== undefined) {
-                var css = stylusExpression.nodes[0];
+                var css = stylusExpression;
                 utils.assertType(css, 'string', 'css');
                 css = '<style>' + stylus(css.string).render() + '</style>';
                 data = data.replace(/(<svg(?:.*)>)/, "$1" + css);
