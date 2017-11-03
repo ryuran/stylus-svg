@@ -9,10 +9,8 @@ This js module add to stylus a function to read a svg file and import it inline 
 ## Installation
 
 ```bash
-npm install ryuran/svg-stylus#v0.2.0
+npm install svg-stylus
 ```
-
-> NB: It’s an install from github but this module will be register on NPM as soon as possible
 
 ## Initalize
 
