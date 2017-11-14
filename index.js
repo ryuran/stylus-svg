@@ -26,17 +26,17 @@ function stylusSvg(options) {
         data = data.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
       }
 
+      // remove xml tag
+      data = data.replace(/<\?xml[^>]*>/, '');
+
       if (stylusExpression !== undefined) {
         var css = stylusExpression;
         utils.assertType(css, 'string', 'css');
         css = '<style>' + stylus(css.string).render() + '</style>';
-        data = data.replace(/(<svg(?:.*)>)/, "$1" + css);
+        data = data.replace(/(<svg[^>]*>)/, "$1" + css);
       }
 
       // console.log(data);
-
-      // remove xml tag
-      data = data.replace(/<\?xml .*\?>/, '');
 
       // Chunk up string in order to avoid
       // "stack level too deep" error
@@ -50,11 +50,8 @@ function stylusSvg(options) {
       for (var i = 0; i < loops; i++) {
         var chunk = data.slice(index, index + slice);
 
-        // remove Line Breaks
-        chunk = chunk.replace(/(?:\r\n|\n|\r)/gm, ' ');
-
-        // remove multiple spaces
-        chunk = chunk.replace(/(?: +)/g, ' ');
+        // remove Line Breaks, tabs and multiple spaces
+        chunk = chunk.replace(/\s+/g, ' ');
 
         // remove spaces between tags
         chunk = chunk.replace(/> /g, '>');
