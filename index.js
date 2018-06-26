@@ -68,7 +68,7 @@ function stylusSvg(options) {
         chunk = chunk.replace(/</g, '%3C');
         chunk = chunk.replace(/>/g, '%3E');
 
-        // some css parsers fail on semi-column or parentheses
+        // some css parsers fail on semicolon or parentheses
         chunk = chunk.replace(/;/g, '%3B');
         chunk = chunk.replace(/\(/g, '%28');
         chunk = chunk.replace(/\)/g, '%29');
