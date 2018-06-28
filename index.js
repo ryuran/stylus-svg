@@ -9,7 +9,14 @@ function stylusSvg(options) {
   return function(style) {
     var svgDirs = options.svgDirs || [path.dirname(style.options.filename)];
 
-    style.define('svgImport', function svgImport(pathExpression, stylusExpression) {
+    style.define('svgImport', function svgImport(pathExpression, stylusExpression, removeSizes) {
+      var removeSizesAttributes = true;
+
+      if (typeof removeSizes !== 'undefined') {
+        utils.assertType(removeSizes, 'boolean', 'removeSize');
+        removeSizesAttributes = removeSizes.isTrue;
+      }
+
       svgDirs.push(path.dirname(pathExpression.filename));
       var svg = pathExpression;
       // assert that the node (svg) is a String node, passing
@@ -29,11 +36,20 @@ function stylusSvg(options) {
       // remove xml tag
       data = data.replace(/<\?xml[^>]*>/, '');
 
-      if (stylusExpression !== undefined) {
+      if (removeSizesAttributes) {
+        var match = /<svg[^>]*>/i.exec(data);
+        var originalSvgTag = match[0];
+        var newSvgTag = originalSvgTag.replace(/\s+(?:height|width)=(?:'[^>']*'|"[^>"]*")/ig, ' ');
+        data = data.replace(originalSvgTag, newSvgTag);
+      }
+
+      if (typeof stylusExpression !== 'undefined') {
         var css = stylusExpression;
         utils.assertType(css, 'string', 'css');
-        css = '<style>' + stylus(css.string).render() + '</style>';
-        data = data.replace(/(<svg[^>]*>)/, "$1" + css);
+        if (css.string !== '') {
+          css = '<style>' + stylus(css.string).render() + '</style>';
+          data = data.replace(/<svg[^>]*>/, "$&" + css);
+        }
       }
 
       // console.log(data);

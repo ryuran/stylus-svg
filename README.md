@@ -66,11 +66,13 @@ You can add some bases directories to resolve path of your svg files.
 ```
 ## How to use?
 
+### basic usage
 ```stylus
 .foo
   background-image: svgImport('../svg/logo.svg')
 ```
 
+### With custom CSS
 You can also use the second argument to give some css to your svg (in stylus language)
 
 ```stylus
@@ -82,3 +84,19 @@ You can also use the second argument to give some css to your svg (in stylus lan
 ```
 
 This Stylus code do not access to outside stylus context (do not use variable defined outside).
+
+### Do not remove `width` and `height` attributes
+
+By default, svg import remove `width` and `height` attributes to be sure that svg would not be considered as an non-vectorial background image by the browser:
+
+> It’s worth noting that the sizing algorithm only cares about the image's dimensions and proportions, or lack thereof. An SVG image with fixed dimensions will be treated just like a raster image of the same size.
+
+Sources: [MDN – Scaling of SVG backgrounds]( https://developer.mozilla.org/en-US/docs/Web/CSS/Scaling_of_SVG_backgrounds)
+
+You can set the third argument to false to not delete it.
+
+```stylus
+.foo
+  background-image: svgImport('../svg/logo.svg', '', false)
+```
+
