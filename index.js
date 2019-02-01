@@ -7,7 +7,14 @@ function stylusSvg(options) {
   var utils = stylus.utils;
 
   return function(style) {
-    var svgDirs = options.svgDirs || [path.dirname(style.options.filename)];
+    var svgDirs = options.svgDirs || [];
+    var currentPath = path.dirname(style.options.filename);
+
+    svgDirs = Array.isArray(svgDirs) ? svgDirs : [svgDirs];
+
+    svgDirs = svgDirs.map((element) => path.resolve(currentPath, element));
+
+    svgDirs.push(path.resolve(currentPath));
 
     style.define('svgImport', function svgImport(pathExpression, stylusExpression, removeSizes) {
       var removeSizesAttributes = true;
@@ -17,7 +24,8 @@ function stylusSvg(options) {
         removeSizesAttributes = removeSizes.isTrue;
       }
 
-      svgDirs.push(path.dirname(pathExpression.filename));
+      svgDirs.push(path.resolve(path.dirname(pathExpression.filename)));
+
       var svg = pathExpression;
       // assert that the node (svg) is a String node, passing
       // the param name for error reporting

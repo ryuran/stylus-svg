@@ -1,0 +1,9 @@
+use('../../index.js', {
+  svgDirs: './subdir'
+})
+
+.foo
+  background-image svgImport('./test.svg')
+
+.bar
+  background-image svgImport('in-subdir.svg')
