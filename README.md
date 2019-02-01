@@ -58,11 +58,23 @@ gulp.task('styles', function () {
 You can add some bases directories to resolve path of your svg files.
 
 ```javascript
-  stylusSvgImport({svgDirs: [__dirname]})
+  stylusSvgImport({svgDirs: __dirname})
 ```
 
 ```stylus
-  use('./node_modules/stylus-svg/index.js', {svgDirs: ['/assets']})
+  use('./node_modules/stylus-svg/index.js', {svgDirs: '/assets'})
+```
+
+It’s possible to add several paths:
+
+```javascript
+  stylusSvgImport({svgDirs: [__dirname, './other/path']})
+```
+
+But stylus syntax can be annoying:
+```stylus
+  svgDirs = '../node_modules' 'assets'
+  use('./node_modules/stylus-svg/index.js', {svgDirs: '/assets'})
 ```
 ## How to use?
 
