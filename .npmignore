@@ -1,2 +1,4 @@
-.editorcongig
+.editorconfig
 test/
+.travis.yml
+*.tgz

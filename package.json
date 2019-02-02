@@ -1,6 +1,6 @@
 {
   "name": "stylus-svg",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Stylus function to import svg from a path and include it inline",
   "main": "index.js",
   "scripts": {
