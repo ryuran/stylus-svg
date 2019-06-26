@@ -1,4 +1,6 @@
 # Stylus-svg
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg?ref=badge_shield)
+
 
 Add stylus function to import svg from a path and include it inline in css.
 
@@ -112,3 +114,7 @@ You can set the third argument to false to not delete it.
   background-image: svgImport('../svg/logo.svg', '', false)
 ```
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg?ref=badge_large)
