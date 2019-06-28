@@ -9,7 +9,7 @@ This js module add to stylus a function to read a svg file and import it inline 
 ## Installation
 
 ```bash
-npm install svg-stylus
+npm install stylus-svg
 ```
 
 ## Initalize
