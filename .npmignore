@@ -1,4 +1,5 @@
 .editorconfig
+.github
 test/
 .travis.yml
 *.tgz
