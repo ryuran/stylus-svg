@@ -1,6 +1,6 @@
 # Stylus-svg
 
-[![Build Status](https://travis-ci.com/ryuran/stylus-svg.svg?branch=master)](https://travis-ci.com/ryuran/stylus-svg) [![dependencies Status](https://david-dm.org/ryuran/stylus-svg/status.svg)](https://david-dm.org/ryuran/stylus-svg) [![devDependencies Status](https://david-dm.org/ryuran/stylus-svg/dev-status.svg)](https://david-dm.org/ryuran/stylus-svg?type=dev)
+[![Build Status](https://travis-ci.com/ryuran/stylus-svg.svg?branch=master)](https://travis-ci.com/ryuran/stylus-svg) ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/stylus-svg)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fryuran%2Fstylus-svg?ref=badge_shield)
 
 
